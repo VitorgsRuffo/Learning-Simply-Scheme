@@ -36,4 +36,19 @@
 (bf 247)
 
 ;combining functions:
-(first (bf 
+(first (bf 'Vitor))
+(+ (first 333) (last 124))
+
+;Defining a "variables":
+(define pi 3.14159)
+pi
+'pi
+(+ pi 2)
+
+;Defining a function:
+(define (cube x)   ;x is the "formal parameter" and is the name by which we'll reference the argument in the function body.
+  (* x x x))       
+
+(cube 2)
+(cube (+ 4 1))     ;(+ 4 1) is the "actual argument expression" used in the function invocation
+                   ;(5) is the result of the actual argument expression and is called "actual argument value".
