@@ -11,14 +11,26 @@
 
   ((lambda (x y) (+ x y)) 15 20)
 
-  ;the "let way":
+  ;the "let way": (let (binding binding binding...) body)
   (let ((x 10)) (* x x))
 
   (let ((x 15)
         (y 20))
        (+ x y))
 
-;Situation where let would be pretty useful: calculation the roots of a quadratic polynomial.
+  ;we can even use the value of a binding to produce the value of onother binding after it: (with let*)
+  (let* ((a 3)(b (+ a 10)))
+    (se '(a plus b is ) (+ a b)))
+
+  ;let* is a simplification of two or more nested lets: the real way of achieving the above effect is shown below:
+  (let ((a 3))
+    (let ((b (+ a 10)))
+      (se '(a plus b is ) (+ a b)) )) ;what happens is: we evaluate the first let which substitutes the value for a in its body and invokes the function represented by its body. The next let does the same thing.
+
+
+  
+
+;Situation where let would be pretty useful: calculating the roots of a quadratic polynomial.
 
 (define (roots a b c)
   (se (/ (+ (- b) (sqrt (- (* b b) (* 4 a c)))) (* 2 a))
@@ -43,8 +55,11 @@
              (/ (- (- b) d) (* 2 a))) )
        (sqrt (- (* b b) (* 4 a c)))) )
 
-    ;but that is very defficult to read right? So we use the let construct to simplify that to us
-    
-
+    ;but that is very defficult to read right? So we use the let construct to simplify that to us:
+    (define (roots a b c)
+      (let ( (d (sqrt (- (* b b) (* 4 a c)))) )
+           (se (/ (+ (- b) d) (* 2 a))
+             (/ (- (- b) d) (* 2 a))) ))   ;the d variable is a formal parameter, thus, you can use it outside its function body after let has finished.
+     
    
    
