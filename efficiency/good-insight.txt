@@ -1,0 +1,2 @@
+"First get the program to work, then, worry about getting it to work efficiently "
+- Brian Harvey, 61A course at Berkeley.
